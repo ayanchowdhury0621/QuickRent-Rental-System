@@ -1,5 +1,5 @@
 import './App.css';
-import Authenticate from './components/Middleware/Authenticate';
+import Authenticate from './components/Authenticate';
 
 function App() {
   return (

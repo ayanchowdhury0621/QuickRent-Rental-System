@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
-import auth from "../config/firebase_auth";
-import useAuthenticator from './useAuthenticator';
+import auth from "./config/firebase_auth";
+import useAuthenticator from './Middleware/useAuthenticator';
 const Authenticate = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,17 +28,26 @@ const Authenticate = () => {
     }
   }
 
-  const signIn = async () => {
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      if (userCredential) {
-        // const user = userCredential.user;                
-      }
-    }
-    catch (error) {
-      console.log("Signin Error");
-      console.log(error);
-    }
+  const signIn = () => {
+    // try {
+    //   const userCred = await signInWithEmailAndPassword(auth, email, password);
+    // }
+    // catch (error) {
+    //   console.log("executing error", error);
+    //   if (error.code === 'auth/invalid-credential' || error.message === 'email address is already in use') {
+    //     alert("Error: ", "Invalid Credentials");
+    //   }
+    //   // console.log(userCredential);
+    // }
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((user) => {
+        // console.log(user);
+      })
+      .catch((error) => {
+        if (error.code === 'auth/invalid-credential') alert("Error: ", "Invalid Credentials");
+        else console.log("In else", error);
+      })
   }
 
 
