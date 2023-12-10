@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import auth from "./config/firebase_auth";
 import useAuthenticator from './Middleware/useAuthenticator';
 const Authenticate = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLogin, setIsLogin] = useState(true);
-  const [userData, setUserData] = useState(null);
+  // const [userData, setUserData] = useState(null);
 
   const { user } = useAuthenticator();
 
@@ -20,6 +20,7 @@ const Authenticate = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       if (userCredential) {
         // const user = userCredential.user;        
+        sessionStorage.setItem('auth_token', userCredential._tokenResponse.refreshToken);
       }
     }
     catch (error) {
@@ -43,10 +44,16 @@ const Authenticate = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((user) => {
         // console.log(user);
+        user.getIdToken().then((token) => {
+          sessionStorage.setItem('auth_token', token);
+        })
       })
       .catch((error) => {
-        if (error.code === 'auth/invalid-credential') alert("Error: ", "Invalid Credentials");
-        else console.log("In else", error);
+        if (error.code === 'auth/wrong-password') {
+          console.log("Incorrect Password");
+        }
+        // if (error.code === 'auth/invalid-credential') alert("Error: ", "Invalid Credentials");
+        // else console.log("In else", error);
       })
   }
 

@@ -28,7 +28,12 @@ const useAuthenticator = () => {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) setUser(user);
+      if (user) {
+        setUser(user);
+        user.getIdToken().then((token) => {
+          sessionStorage.setItem('auth_token', token);
+        })
+      }
     })
 
     return () => unsubscribe();
