@@ -5,18 +5,14 @@ function SearchComponent({ onSearch }) {
 
   const handleSearch = () => {
     if (query) {
+      console.log("Initiating search for:", query); // Log when a search is initiated
       onSearch(query);
     }
   };
 
   return (
     <div>
-      <input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search for rentals..."
-      />
+      <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
       <button onClick={handleSearch}>Search</button>
     </div>
   );
