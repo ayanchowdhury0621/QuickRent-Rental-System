@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import auth from "./config/firebase_auth";
 import useAuthenticator from './Middleware/useAuthenticator';
+import useVerifyer from './Middleware/useVerifyer';
+import useLogout from './Middleware/useLogout';
+
 const Authenticate = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLogin, setIsLogin] = useState(true);
-  // const [userData, setUserData] = useState(null);
 
   const { user } = useAuthenticator();
+  // Recieves function to verify token manually;
+  const verifyFunc = useVerifyer();
+  // Recieves function to logout;
+  const logOut = useLogout();
 
 
-  const logOut = () => {
-    signOut(auth);
-    sessionStorage.clear();
-  }
 
   const signUp = async () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         alert("Account Created. Signup now!");
+
       })
       .catch((error) => {
         if (error.code === 'auth/email-already-in-use') {
@@ -31,16 +34,20 @@ const Authenticate = () => {
       })
   }
 
+
   const signIn = () => {
     signInWithEmailAndPassword(auth, email, password)
-      .then((user) => {
-        // console.log(user);
-        user.getIdToken().then((token) => {
-          sessionStorage.setItem('auth_token', token);
-        })
+      .then(async (user) => {
+        try {
+          const checkToken = await verifyFunc();
+          if (checkToken.data.message == "success") { }
+          else alert(checkToken.response.data.message);
+        }
+        catch (error) {
+          console.log("Token verification error:", error);
+        }
       })
       .catch((error) => {
-        console.log(error.code);
 
         if (error.code === 'auth/user-not-found') {
           alert('Please check the Email');
