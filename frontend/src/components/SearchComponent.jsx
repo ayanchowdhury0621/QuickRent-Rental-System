@@ -1,21 +1,36 @@
 import React, { useState } from 'react';
+import './SearchComponent.css'; // Corrected import statement
 
 function SearchComponent({ onSearch }) {
   const [query, setQuery] = useState('');
 
   const handleSearch = () => {
     if (query) {
-      console.log("Initiating search for:", query); // Log when a search is initiated
       onSearch(query);
     }
   };
 
+  // Handle the Enter key press event
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
-    <div>
-      <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
+    <div className="search-bar-container">
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        onKeyPress={handleKeyPress} // Add this line
+        className="search-bar"
+        placeholder="Search for items..."
+      />
       <button onClick={handleSearch}>Search</button>
     </div>
   );
 }
+
 
 export default SearchComponent;

@@ -1,3 +1,4 @@
+# backend/firestore/index.py
 from google.cloud import language_v1
 from google.cloud import firestore
 from google.api_core.exceptions import GoogleAPIError
@@ -6,29 +7,17 @@ from math import radians, cos, sin, asin, sqrt
 
 logging.basicConfig(level=logging.DEBUG)
 
-
-def haversine(lon1, lat1, lon2, lat2):
-    """
-    Calculate the great circle distance in kilometers between two points
-    on the earth (specified in decimal degrees).
-    """
-    # Convert decimal degrees to radians
-    lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
-
-    # Haversine formula
-    dlon = lon2 - lon1
-    dlat = lat2 - lat1
-    a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
-    c = 2 * asin(sqrt(a))
-    r = 6371  # Radius of earth in kilometers
-    return c * r
+from google.cloud import firestore
+import logging
 
 
-def query_products(search_criteria, user_location, max_distance_km=10000):
-    """
-    Query products based on search criteria and user location.
-    Only returns products within 'max_distance_km' from the user.
-    """
+# Mock function for calculating distance between zipcodes
+def calculate_distance(zipcode1, zipcode2):
+    # This should be replaced with actual logic to calculate distance
+    return abs(int(zipcode1) - int(zipcode2))
+
+
+def query_products(search_criteria, user_zipcode):
     db = firestore.Client()
     results = []
 
@@ -41,24 +30,31 @@ def query_products(search_criteria, user_location, max_distance_km=10000):
             product = snapshot.to_dict()
             product_name = product.get("name", "").lower()
             product_tags = [tag.lower() for tag in product.get("tags", [])]
-            product_location = product.get("location", {})
+            product_zipcode = product.get("location")
 
-            # Check if product matches search criteria
             if entity_name in product_name or entity_name in product_tags:
-                # Calculate distance from user location
-                product_lat = product_location.get("lat")
-                product_lon = product_location.get("lon")
-                if product_lat is not None and product_lon is not None:
-                    distance = haversine(
-                        user_location["lon"],
-                        user_location["lat"],
-                        product_lon,
-                        product_lat,
-                    )
-                    # Check if product is within the specified distance
-                    if distance <= max_distance_km:
-                        results.append(product)
-                        logging.debug(f"Match found within distance: {product}")
+                # Append product with distance to results
+                product["distance"] = calculate_distance(user_zipcode, product_zipcode)
+                results.append(product)
 
-    logging.debug(f"Total matches: {len(results)}")
+    # Sort results by distance
+    results.sort(key=lambda x: x["distance"])
+    logging.debug(f"Total matches sorted by proximity: {len(results)}")
     return results
+
+
+def fetch_popular_products(limit=4):
+    """
+    Fetch popular products from the Firestore database.
+    Returns a limited number of products.
+    """
+    db = firestore.Client()
+    query_ref = (
+        db.collection("products")
+        .order_by("name", direction=firestore.Query.DESCENDING)
+        .limit(limit)
+    )
+    snapshots = query_ref.stream()
+
+    popular_products = [snapshot.to_dict() for snapshot in snapshots]
+    return popular_products
