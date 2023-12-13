@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from backend.storage.index import query_products, fetch_transaction_history
+from flask_cors import CORS  # Import CORS
 from backend.Search import analyze_text
 from google.cloud import bigquery
 
@@ -7,6 +8,7 @@ app = Flask(__name__)
 
 # Initialize a BigQuery client
 bigquery_client = bigquery.Client()
+CORS(app)
 
 
 @app.route("/search", methods=["POST"])
