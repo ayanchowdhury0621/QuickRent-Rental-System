@@ -3,6 +3,7 @@ import axios from 'axios';
 import SearchComponent from './components/SearchComponent';
 import './App.css'; 
 import Modal from './components/Modal';
+import { fetchPopularProducts } from './logic/refreshProducts';
 
 
 function App() {
@@ -48,6 +49,8 @@ function App() {
         <h3>{product.name}</h3>
         <p>Price: ${product.price}</p>
         <p>{product.description}</p>
+        <p>Location Zip: {product.location}</p>
+        <p>Distance: {product.distance.toFixed(2)} km</p>
         <button onClick={(e) => { e.stopPropagation(); handleAddToCart(product); }}>Add to Cart</button>
       </div>
     </div>
@@ -89,18 +92,12 @@ function App() {
   
 
   useEffect(() => {
-    // Fetch popular rented products here and set them in the state
-    const fetchPopularProducts = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/popular-products');
-        console.log("Popular products response:", response.data); // Log the response from the server
-        setPopularProducts(response.data.products);
-      } catch (error) {
-        console.error("Fetching popular products failed:", error);
-      }
+    const fetchAndSetPopularProducts = async () => {
+      const shuffledProducts = await fetchPopularProducts();
+      setPopularProducts(shuffledProducts);
     };
-
-    fetchPopularProducts();
+  
+    fetchAndSetPopularProducts();
   }, []);
 
   return (
@@ -131,6 +128,7 @@ function App() {
             <h2>{selectedProduct.name}</h2>
             <p>Category: {selectedProduct.category}</p>
             <p>Price: ${selectedProduct.price}</p>
+            <p>Location Zip: {selectedProduct.location}</p>
             <button onClick={() => handleAddToCart(selectedProduct)}>Add to Cart</button>
           </div>
         )}

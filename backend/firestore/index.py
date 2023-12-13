@@ -1,25 +1,43 @@
 # backend/firestore/index.py
-from google.cloud import language_v1
 from google.cloud import firestore
 from google.api_core.exceptions import GoogleAPIError
 import logging
-from math import radians, cos, sin, asin, sqrt
+from haversine import haversine
+import csv
 
 logging.basicConfig(level=logging.DEBUG)
 
-from google.cloud import firestore
-import logging
+
+def load_zipcode_data(csv_file):
+    zipcode_data = {}
+    with open(csv_file, newline="") as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            zipcode_data[row["ZIP"]] = (float(row["LAT"]), float(row["LNG"]))
+    return zipcode_data
 
 
-# Mock function for calculating distance between zipcodes
+# Assuming you have a dictionary called `zipcode_data` from Step 1
 def calculate_distance(zipcode1, zipcode2):
-    # This should be replaced with actual logic to calculate distance
-    return abs(int(zipcode1) - int(zipcode2))
+    zipcode_data = load_zipcode_data(
+        "/Users/Ayan/QuickRent-Rental-System/backend/firestore/zipcodes.csv"
+    )
+
+    coords1 = zipcode_data.get(zipcode1)
+    coords2 = zipcode_data.get(zipcode2)
+    if not coords1 or not coords2:
+        # Handle the case where we don't have coordinates for a zipcode
+        return float("inf")  # Represents an infinite distance
+    return haversine(coords1, coords2)
 
 
 def query_products(search_criteria, user_zipcode):
     db = firestore.Client()
     results = []
+
+    zipcode_data = load_zipcode_data(
+        "/Users/Ayan/QuickRent-Rental-System/backend/firestore/zipcodes.csv"
+    )
 
     for criteria in search_criteria:
         entity_name = criteria["name"].lower()
@@ -34,7 +52,9 @@ def query_products(search_criteria, user_zipcode):
 
             if entity_name in product_name or entity_name in product_tags:
                 # Append product with distance to results
-                product["distance"] = calculate_distance(user_zipcode, product_zipcode)
+                product["distance"] = calculate_distance(
+                    user_zipcode, product_zipcode, zipcode_data
+                )
                 results.append(product)
 
     # Sort results by distance

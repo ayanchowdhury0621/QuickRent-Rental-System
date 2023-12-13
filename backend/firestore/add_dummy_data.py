@@ -171,4 +171,4 @@ def add_dummy_data(num_items=10, clear_existing=False):
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    add_dummy_data(20, True)
+    add_dummy_data(50, True)
