@@ -3,7 +3,8 @@ import axios from 'axios';
 import SearchComponent from './components/SearchComponent';
 import './App.css'; 
 import Modal from './components/Modal';
-
+import Authenticate from './components/Authenticate';
+import Cart from './components/Cart';
 
 function App() {
   const [results, setResults] = useState([]);
@@ -135,6 +136,8 @@ function App() {
           </div>
         )}
       </Modal>
+      // <Authenticate />
+      // <Cart />
     </div>
   );
 }
