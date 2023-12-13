@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import SearchComponent from './components/SearchComponent';
-import './App.css'; 
+import './App.css';
 import Modal from './components/Modal';
 import Authenticate from './components/Authenticate';
 import Cart from './components/Cart';
@@ -24,7 +24,7 @@ function App() {
 
   async function getZipcodeFromCoordinates(lat, lon) {
     const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
-  
+
     try {
       const response = await axios.get(url);
       const data = response.data;
@@ -53,17 +53,17 @@ function App() {
       </div>
     </div>
   );
-  
+
   const handleSearch = async (query) => {
     console.log("Search query:", query);
-  
+
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(async (position) => {
         const userLocation = {
           lat: position.coords.latitude,
           lon: position.coords.longitude
         };
-  
+
         try {
           // Get zipcode from coordinates
           const userZipcode = await getZipcodeFromCoordinates(userLocation.lat, userLocation.lon);
@@ -87,7 +87,7 @@ function App() {
       console.log("Geolocation is not available");
     }
   };
-  
+
 
   useEffect(() => {
     // Fetch popular rented products here and set them in the state
@@ -136,8 +136,8 @@ function App() {
           </div>
         )}
       </Modal>
-      // <Authenticate />
-      // <Cart />
+      {/* <Authenticate />
+      <Cart /> */}
     </div>
   );
 }
