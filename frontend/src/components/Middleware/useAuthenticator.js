@@ -17,9 +17,10 @@ const useAuthenticator = () => {
         setUser(user);
         user.getIdToken().then(async (token) => {
           sessionStorage.setItem('auth_token', token);
+          sessionStorage.setItem('uid', user?.uid);
           const res = await verifyFunc();
           if (res?.data?.message === "success") {
-            console.log("success");
+            // console.log("success");
           }
           else {
             logOut();
