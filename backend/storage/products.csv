@@ -1,0 +1,51 @@
+name,category,tags,price,location,image
+Textbook 39,Study,"['education', 'learning', 'coursebook']",35,80223,https://storage.cloud.google.com/quickrent_item_images/textbooks.png
+Board Game 22,Games,"['game', 'fun', 'group activity']",40,80018,https://storage.cloud.google.com/quickrent_item_images/boargame.png
+Headphones 28,Electronics,"['audio', 'music', 'tech']",22,80401,https://storage.cloud.google.com/quickrent_item_images/headphones.png
+Guitar 36,Leisure,"['instrument', 'music', 'acoustic']",31,80424,https://storage.cloud.google.com/quickrent_item_images/guitar.png
+Camera 59,Photography,"['photo', 'tech', 'gadget']",17,80809,https://storage.cloud.google.com/quickrent_item_images/camera.png
+Portable Charger 41,Electronics,"['battery', 'tech', 'gadget']",34,80290,https://storage.cloud.google.com/quickrent_item_images/charger.png
+Hoodie 85,Clothing,"['wearable', 'casual', 'comfort']",41,80118,https://storage.cloud.google.com/quickrent_item_images/hoodie.png
+Guitar 71,Leisure,"['instrument', 'music', 'acoustic']",31,80829,https://storage.cloud.google.com/quickrent_item_images/guitar.png
+Board Game 67,Games,"['game', 'fun', 'group activity']",6,80033,https://storage.cloud.google.com/quickrent_item_images/boargame.png
+Headphones 75,Music,"['audio', 'music', 'tech']",29,80451,https://storage.cloud.google.com/quickrent_item_images/headphones.png
+Bicycle 24,Transportation,"['bike', 'cycling', 'travel']",45,80461,https://storage.cloud.google.com/quickrent_item_images/bicycle.png
+Camera 23,Photography,"['photo', 'tech', 'gadget']",47,80303,https://storage.cloud.google.com/quickrent_item_images/camera.png
+Hoodie 96,Clothing,"['wearable', 'casual', 'comfort']",32,80511,https://storage.cloud.google.com/quickrent_item_images/hoodie.png
+Backpack 47,Accessories,"['bag', 'storage', 'travel']",43,80443,https://storage.cloud.google.com/quickrent_item_images/backpack.png
+Headphones 90,Electronics,"['audio', 'music', 'tech']",31,80434,https://storage.cloud.google.com/quickrent_item_images/headphones.png
+Laptop 77,Electronics,"['computer', 'tech', 'study']",47,80203,https://storage.cloud.google.com/quickrent_item_images/laptop.png
+Hoodie 54,Fashion,"['wearable', 'casual', 'comfort']",27,80461,https://storage.cloud.google.com/quickrent_item_images/hoodie.png
+Camera 81,Electronics,"['photo', 'tech', 'gadget']",21,80016,https://storage.cloud.google.com/quickrent_item_images/camera.png
+Portable Charger 61,Electronics,"['battery', 'tech', 'gadget']",28,81631,https://storage.cloud.google.com/quickrent_item_images/charger.png
+Textbook 30,Study,"['education', 'learning', 'coursebook']",50,80221,https://storage.cloud.google.com/quickrent_item_images/textbooks.png
+Textbook 75,Study,"['education', 'learning', 'coursebook']",15,80223,https://storage.cloud.google.com/quickrent_item_images/textbooks.png
+Board Game 45,Leisure,"['game', 'fun', 'group activity']",48,80910,https://storage.cloud.google.com/quickrent_item_images/boargame.png
+Board Game 88,Leisure,"['game', 'fun', 'group activity']",35,81657,https://storage.cloud.google.com/quickrent_item_images/boargame.png
+Camera 41,Electronics,"['photo', 'tech', 'gadget']",38,80860,https://storage.cloud.google.com/quickrent_item_images/camera.png
+Desk Chair 27,Home,"['seat', 'office', 'study']",8,80914,https://storage.cloud.google.com/quickrent_item_images/chair.png
+Camera 63,Photography,"['photo', 'tech', 'gadget']",38,80220,https://storage.cloud.google.com/quickrent_item_images/camera.png
+Board Game 28,Games,"['game', 'fun', 'group activity']",14,80131,https://storage.cloud.google.com/quickrent_item_images/boargame.png
+Desk Chair 11,Home,"['seat', 'office', 'study']",25,80512,https://storage.cloud.google.com/quickrent_item_images/chair.png
+Board Game 22,Games,"['game', 'fun', 'group activity']",11,80118,https://storage.cloud.google.com/quickrent_item_images/boargame.png
+Camera 33,Electronics,"['photo', 'tech', 'gadget']",12,80229,https://storage.cloud.google.com/quickrent_item_images/camera.png
+Portable Charger 58,Travel,"['battery', 'tech', 'gadget']",11,80138,https://storage.cloud.google.com/quickrent_item_images/charger.png
+Board Game 38,Games,"['game', 'fun', 'group activity']",42,80536,https://storage.cloud.google.com/quickrent_item_images/boargame.png
+Projector 42,Electronics,"['presentation', 'movie', 'tech']",33,80439,https://storage.cloud.google.com/quickrent_item_images/projector.png
+Bicycle 2,Sport,"['bike', 'cycling', 'travel']",16,81632,https://storage.cloud.google.com/quickrent_item_images/bicycle.png
+Hoodie 81,Clothing,"['wearable', 'casual', 'comfort']",11,80652,https://storage.cloud.google.com/quickrent_item_images/hoodie.png
+Projector 66,Study,"['presentation', 'movie', 'tech']",13,80434,https://storage.cloud.google.com/quickrent_item_images/projector.png
+Desk Chair 30,Furniture,"['seat', 'office', 'study']",32,82009,https://storage.cloud.google.com/quickrent_item_images/chair.png
+Portable Charger 40,Electronics,"['battery', 'tech', 'gadget']",48,80238,https://storage.cloud.google.com/quickrent_item_images/charger.png
+Headphones 2,Music,"['audio', 'music', 'tech']",32,80238,https://storage.cloud.google.com/quickrent_item_images/headphones.png
+Bicycle 49,Sport,"['bike', 'cycling', 'travel']",39,80809,https://storage.cloud.google.com/quickrent_item_images/bicycle.png
+Backpack 78,Study,"['bag', 'storage', 'travel']",21,80018,https://storage.cloud.google.com/quickrent_item_images/backpack.png
+Bicycle 70,Transportation,"['bike', 'cycling', 'travel']",48,81637,https://storage.cloud.google.com/quickrent_item_images/bicycle.png
+Tent 34,Camping,"['camping', 'shelter', 'outdoor']",13,80819,https://storage.cloud.google.com/quickrent_item_images/tent.png
+Desk Chair 97,Home,"['seat', 'office', 'study']",35,80211,https://storage.cloud.google.com/quickrent_item_images/chair.png
+Bicycle 62,Sport,"['bike', 'cycling', 'travel']",27,80534,https://storage.cloud.google.com/quickrent_item_images/bicycle.png
+Backpack 46,Study,"['bag', 'storage', 'travel']",34,80424,https://storage.cloud.google.com/quickrent_item_images/backpack.png
+Bicycle 46,Sport,"['bike', 'cycling', 'travel']",18,80425,https://storage.cloud.google.com/quickrent_item_images/bicycle.png
+Projector 24,Electronics,"['presentation', 'movie', 'tech']",37,80214,https://storage.cloud.google.com/quickrent_item_images/projector.png
+Portable Charger 27,Electronics,"['battery', 'tech', 'gadget']",31,80648,https://storage.cloud.google.com/quickrent_item_images/charger.png
+Hoodie 8,Clothing,"['wearable', 'casual', 'comfort']",33,80204,https://storage.cloud.google.com/quickrent_item_images/hoodie.png

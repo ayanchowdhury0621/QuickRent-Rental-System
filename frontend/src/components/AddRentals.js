@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { imgStorage, docStorage } from "./config/firebase_storage";
 import { v4 } from "uuid";
-import { getDownloadURL, ref, uploadBytes, uploadBytesResumable } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { useNavigate } from 'react-router-dom';
+
 
 function AddRentals() {
   const [rentalName, setRentalName] = useState("");
@@ -10,6 +12,7 @@ function AddRentals() {
   const [rentalCategory, setRentalCategory] = useState("");
   const [rentalZip, setRentalZip] = useState(0);
   const [rentalPrice, setRentalPrice] = useState(0);
+  const history = useNavigate();
 
   const [imgUpload, setImgUpload] = useState(null);
   const [imgUrl, setImgUrl] = useState("");
@@ -32,6 +35,8 @@ function AddRentals() {
             break;
           case 'running':
             console.log('Upload is running');
+            break;
+          default:
             break;
         }
       },
@@ -57,6 +62,11 @@ function AddRentals() {
 
     // console.log(imgUrl);
   }
+
+  const goToTransactionHistory = () => {
+    history.push('/transaction-history');
+  };
+
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -126,6 +136,7 @@ function AddRentals() {
       <input type="file" onChange={(e) => { setImgUpload(e.target.files[0]) }} />
       <button onClick={uploadImg}>Upload</button> <br />
       <button onClick={handleClick}>Add</button>
+      <button onClick={goToTransactionHistory}>Transaction History</button>
     </div>
   );
 }
