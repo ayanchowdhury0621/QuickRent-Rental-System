@@ -40,14 +40,29 @@ def add_dummy_data(num_items=10, clear_existing=False):
 
     products = generate_dummy_products(num_items)
 
-    for product in products:
-        try:
-            db.collection("products").add(product)
-            logging.info(f"Added product: {product}")
-        except GoogleAPIError as e:
-            logging.error(f"Error adding product {product}: {e}")
+    with open(
+        "/Users/Ayan/QuickRent-Rental-System/backend/firestore/products.csv",
+        mode="w",
+        newline="",
+    ) as file:
+        fieldnames = ["name", "category", "tags", "price", "location", "image"]
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+
+        for product in products:
+            try:
+                # Add product to Firestore
+                db.collection("products").add(product)
+                logging.info(f"Added product: {product}")
+
+                # Write product to CSV
+                writer.writerow(product)
+
+            except GoogleAPIError as e:
+                logging.error(f"Error adding product {product}: {e}")
 
 
+# Function to generate dummy products
 def clear_collection(collection):
     for doc in collection.stream():
         try:
@@ -148,10 +163,10 @@ def generate_dummy_products(num_items, valid_zipcodes):
     return products
 
 
-# Function to add dummy data to Firestore
-def add_dummy_data(num_items=10, clear_existing=False):
+def add_dummy_data(num_items, writer, clear_existing=False):
     db = firestore.Client()
 
+    # Clear existing data if needed
     if clear_existing:
         clear_collection(db.collection("products"))
 
@@ -163,12 +178,28 @@ def add_dummy_data(num_items=10, clear_existing=False):
 
     for product in products:
         try:
+            # Add product to Firestore
             db.collection("products").add(product)
             logging.info(f"Added product: {product}")
+
+            # Write product to CSV
+            writer.writerow(product)
+
         except GoogleAPIError as e:
             logging.error(f"Error adding product {product}: {e}")
 
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    add_dummy_data(50, True)
+
+    # Open a CSV file to write the products to
+    with open(
+        "/Users/Ayan/QuickRent-Rental-System/backend/firestore/products.csv",
+        mode="w",
+        newline="",
+    ) as file:
+        fieldnames = ["name", "category", "tags", "price", "location", "image"]
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+
+        add_dummy_data(50, writer, True)
