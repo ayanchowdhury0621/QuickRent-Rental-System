@@ -77,7 +77,7 @@ const Authenticate = () => {
   };
 
   useEffect(() => {
-    console.log(user);
+    // console.log(user);
   }, [user])
 
 
