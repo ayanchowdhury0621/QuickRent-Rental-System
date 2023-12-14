@@ -14,7 +14,7 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   // actCart = actual User cart
   // addToCart = post cart (product, quantity);
-  const [ actCart, addToCart ] = Cart();
+  const [actCart, addToCart] = Cart();
 
   const handleProductClick = (product) => {
     setSelectedProduct(product);
@@ -109,40 +109,43 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <header className="App-header">
-        <h1>Search For Rentals!</h1>
-        <SearchComponent onSearch={handleSearch} />
-      </header>
-      <section className="popular-products">
-        <h2>Popular Rented Products</h2>
-        <div className="product-list">
-          {popularProducts.map(product => (
-            <ProductCard product={product} key={product.id} />
-          ))}
-        </div>
-      </section>
-      <section className="search-results">
-        <h2>Search Results</h2>
-        <div className="product-list">
-          {results.map(product => (
-            <ProductCard product={product} key={product.id} />
-          ))}
-        </div>
-      </section>
-      <Modal show={isModalOpen} onClose={handleCloseModal}>
-        {selectedProduct && (
-          <div>
-            <h2>{selectedProduct.name}</h2>
-            <p>Category: {selectedProduct.category}</p>
-            <p>Price: ${selectedProduct.price}</p>
-            <button onClick={() => handleAddToCart(selectedProduct)}>Add to Cart</button>
-          </div>
-        )}
-      </Modal>
+    // <div>
+    //   <header className="App-header">
+    //     <h1>Search For Rentals!</h1>
+    //     <SearchComponent onSearch={handleSearch} />
+    //   </header>
+    //   <section className="popular-products">
+    //     <h2>Popular Rented Products</h2>
+    //     <div className="product-list">
+    //       {popularProducts.map(product => (
+    //         <ProductCard product={product} key={product.id} />
+    //       ))}
+    //     </div>
+    //   </section>
+    //   <section className="search-results">
+    //     <h2>Search Results</h2>
+    //     <div className="product-list">
+    //       {results.map(product => (
+    //         <ProductCard product={product} key={product.id} />
+    //       ))}
+    //     </div>
+    //   </section>
+    //   <Modal show={isModalOpen} onClose={handleCloseModal}>
+    //     {selectedProduct && (
+    //       <div>
+    //         <h2>{selectedProduct.name}</h2>
+    //         <p>Category: {selectedProduct.category}</p>
+    //         <p>Price: ${selectedProduct.price}</p>
+    //         <button onClick={() => handleAddToCart(selectedProduct)}>Add to Cart</button>
+    //       </div>
+    //     )}
+    //   </Modal>
+    //   <Authenticate />
+    //   <Cart />
+    // </div>
+    <>
       <Authenticate />
-      <Cart />
-    </div>
+    </>
   );
 }
 
