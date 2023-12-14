@@ -5,7 +5,7 @@ const useVerifyer = () => {
 
   const verifyToken = async () => {
     try {
-      const auth_server = 'http://localhost:5000/api/verify';
+      const auth_server = 'http://localhost:5002/api/verify';
       const token = sessionStorage.getItem('auth_token');
       const res = await axios.get(auth_server, {
         headers: {

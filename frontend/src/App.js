@@ -136,8 +136,8 @@ function App() {
           </div>
         )}
       </Modal>
-      {/* <Authenticate />
-      <Cart /> */}
+      <Authenticate />
+      <Cart />
     </div>
   );
 }
