@@ -40,7 +40,7 @@ const Authenticate = () => {
       .then(async (user) => {
         try {
           const checkToken = await verifyFunc();
-          if (checkToken.data.message == "success") { }
+          if (checkToken.data.message === "success") { }
           else alert(checkToken.response.data.message);
         }
         catch (error) {
