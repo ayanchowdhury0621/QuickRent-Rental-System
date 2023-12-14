@@ -86,7 +86,7 @@ const Cart = () => {
   //     </h3> */}
   //   </div>
   // );
-  return { actCart, addToCart };
+  return [actCart, addToCart] ;
 };
 
 export default Cart;

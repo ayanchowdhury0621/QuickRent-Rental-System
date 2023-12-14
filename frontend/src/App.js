@@ -14,7 +14,7 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   // actCart = actual User cart
   // addToCart = post cart (product, quantity);
-  const { actCart, addToCart } = Cart();
+  const [ actCart, addToCart ] = Cart();
 
   const handleProductClick = (product) => {
     setSelectedProduct(product);
@@ -39,9 +39,10 @@ function App() {
   }
 
   // Function to handle adding product to cart
-  const handleAddToCart = (product) => {
+  const handleAddToCart = async (product) => {
     // Placeholder for add to cart logic
-    console.log('Add to cart:', product);
+    // console.log('Add to cart:', product);
+    await addToCart(product.id, 1);
   };
 
   // ProductCard component
