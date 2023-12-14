@@ -60,6 +60,7 @@ function App() {
   );
 
   const handleSearch = async (query) => {
+    sessionStorage.setItem("query", query);
     console.log("Search query:", query);
 
     if ("geolocation" in navigator) {
@@ -111,7 +112,7 @@ function App() {
 
   return (
     <div>
-      <Navbar searchFunc={handleSearch} />
+      <Navbar handleSearch={handleSearch} />
       <header className="App-header">
         <h1>Search For Rentals!</h1>
         {/* <SearchComponent onSearch={handleSearch} /> */}

@@ -27,7 +27,7 @@ function SearchComponent({ onSearch }) {
         placeholder="Search"
       />
       {/* <i class="fas fa-search"></i> */}
-      {/* <button onClick={handleSearch}>Search</button> */}
+      <button onClick={handleSearch}>Search</button>
     </div>
   );
 }

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import SearchComponent from './SearchComponent';
 
 
-const Navbar_ = ({ searchFunc }) => {
+const Navbar_ = ({ handleSearch }) => {
   const [userId, setUserId] = useState('');
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const Navbar_ = ({ searchFunc }) => {
                   className=" mr-sm-2"
                   onSubmit={searchFunc}
                 /> */}
-                  <SearchComponent onSearch={searchFunc} />
+                  <SearchComponent onSearch={handleSearch} />
                 </Col>
                 {/* <Col xs="auto">
                 <Button type="submit">Submit</Button>
