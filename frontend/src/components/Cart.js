@@ -15,12 +15,12 @@ const Cart = () => {
 
   const fetchCartItems = async () => {
     if (userId !== null && userId !== undefined && userId !== '') {
-      try {
-        const response = await axios.get(`http://localhost:5001/api/tempCart/${userId}`);
-        setCartItems(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+      // try {
+      //   const response = await axios.get(`http://localhost:5001/api/tempCart/${userId}`);
+      //   setCartItems(response.data);
+      // } catch (error) {
+      //   console.log(error);
+      // }
 
       try {
         const response_cart = await axios.get(`http://localhost:5001/api/getCart/${userId}`);
@@ -65,28 +65,28 @@ const Cart = () => {
     fetchCartItems();
   }, [user, myCart]);
 
-  return (
-    <div>
-      <h1>Shopping's Cart</h1>
-      <ul>
-        {
-          cartItems && cartItems.map((item, key) => {
-            const prod = item.prod;
-            return (
-              <li key={key}>
-                <>{prod?.name}</>
-                <button onClick={() => addToCart(item.prodID, prod.quantity)}>Add</button>
-              </li>
-            )
-          })
-        }
-      </ul>
-      <h3>
-        {actCart && JSON.stringify(actCart, null, 2)}
-      </h3>
-    </div>
-
-  );
+  // return (
+  //   <div>
+  //     {/* <h1>Shopping's Cart</h1>
+  //     <ul>
+  //       {
+  //         cartItems && cartItems.map((item, key) => {
+  //           const prod = item.prod;
+  //           return (
+  //             <li key={key}>
+  //               <>{prod?.name}</>
+  //               <button onClick={() => addToCart(item.prodID, prod.quantity)}>Add</button>
+  //             </li>
+  //           )
+  //         })
+  //       }
+  //     </ul>
+  //     <h3>
+  //       {actCart && JSON.stringify(actCart, null, 2)}
+  //     </h3> */}
+  //   </div>
+  // );
+  return { actCart, addToCart };
 };
 
 export default Cart;

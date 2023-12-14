@@ -12,6 +12,9 @@ function App() {
 
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // actCart = actual User cart
+  // addToCart = post cart (product, quantity);
+  const { actCart, addToCart } = Cart();
 
   const handleProductClick = (product) => {
     setSelectedProduct(product);
