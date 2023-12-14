@@ -45,7 +45,17 @@ def add_dummy_data(num_items=10, clear_existing=False):
         mode="w",
         newline="",
     ) as file:
-        fieldnames = ["id", "name", "category", "tags", "price", "location", "image"]
+        fieldnames = [
+            "seller_id",
+            "buyer_id",
+            "product_id",
+            "name",
+            "category",
+            "tags",
+            "price",
+            "location",
+            "image",
+        ]
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
 
@@ -142,19 +152,27 @@ def generate_dummy_products(num_items, valid_zipcodes):
     }
     products = []
 
-    ids = 0
+    product_ids = 0
+    buyer_ids = 1
+    seller_ids = 2
     for _ in range(num_items):
-        ids += 1
+        product_ids += 1
+        buyer_ids += 1
+        seller_ids += 1
         name, info = random.choice(list(product_info.items()))
         category = random.choice(info["categories"])
         tags = info["tags"]
         price = random.randint(5, 50)
         zipcode = random.choice(valid_zipcodes)
-        id = ids
+        product_id = product_ids
+        buyer_id = buyer_ids
+        seller_id = seller_ids
 
         products.append(
             {
-                "id": id,
+                "seller_id": seller_id,
+                "buyer_id": buyer_id,
+                "product_id": product_id,
                 "name": f"{name} {random.randint(1, 100)}",
                 "category": category,
                 "tags": tags,
@@ -202,7 +220,17 @@ if __name__ == "__main__":
         mode="w",
         newline="",
     ) as file:
-        fieldnames = ["id", "name", "category", "tags", "price", "location", "image"]
+        fieldnames = [
+            "seller_id",
+            "buyer_id",
+            "product_id",
+            "name",
+            "category",
+            "tags",
+            "price",
+            "location",
+            "image",
+        ]
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
 
