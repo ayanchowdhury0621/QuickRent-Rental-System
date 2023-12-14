@@ -14,12 +14,12 @@ const Navbar_ = ({ handleSearch }) => {
     setUserId(u);
   }, [])
   return (
-    <Navbar className="bg-body-tertiary container-fluid" bg="primary" data-bs-theme="dark" >
+    <Navbar sticky="top" className="container-fluid text-bg-primary" >
       <Container>
         <Navbar.Brand href="#home">QuickRent</Navbar.Brand>
         <Navbar.Toggle />
         {userId &&
-          (<Navbar.Collapse className="justify-content-end d-flex gap-3">
+          (<Navbar.Collapse className="justify-content-end d-flex gap-5">
             <Form inline>
               <Row>
                 <Col xs="auto">

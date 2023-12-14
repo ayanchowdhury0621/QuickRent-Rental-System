@@ -6,7 +6,11 @@ import Modal from './components/Modal';
 import Authenticate from './components/Authenticate';
 import Cart from './components/Cart';
 import Navbar from './components/Navbar';
-
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Carousel from "./components/Carousel"
+import PopularProducts from './components/PopularProducts';
 function App() {
   const [results, setResults] = useState([]);
   const [popularProducts, setPopularProducts] = useState([]);
@@ -60,7 +64,6 @@ function App() {
   );
 
   const handleSearch = async (query) => {
-    sessionStorage.setItem("query", query);
     console.log("Search query:", query);
 
     if ("geolocation" in navigator) {
@@ -99,9 +102,122 @@ function App() {
     // Fetch popular rented products here and set them in the state
     const fetchPopularProducts = async () => {
       try {
+        const sampleProduct = [
+          {
+            buyer_id: "20",
+            category: "outdoor",
+            image: "https://storage.cloud.google.com/quickrent_item_images/tent.png",
+            location: "80830",
+            name: "Tent 64",
+            price: "22",
+            product_id: "19",
+            seller_id: "21",
+            tags: ["camping", "shelter", "outdoor"]
+          },
+          {
+            buyer_id: "20",
+            category: "outdoor",
+            image: "https://storage.cloud.google.com/quickrent_item_images/tent.png",
+            location: "80830",
+            name: "Tent 64",
+            price: "22",
+            product_id: "19",
+            seller_id: "21",
+            tags: ["camping", "shelter", "outdoor"]
+          },
+          {
+            buyer_id: "20",
+            category: "outdoor",
+            image: "https://storage.cloud.google.com/quickrent_item_images/tent.png",
+            location: "80830",
+            name: "Tent 64",
+            price: "22",
+            product_id: "19",
+            seller_id: "21",
+            tags: ["camping", "shelter", "outdoor"]
+          },
+          {
+            buyer_id: "20",
+            category: "outdoor",
+            image: "https://storage.cloud.google.com/quickrent_item_images/tent.png",
+            location: "80830",
+            name: "Tent 64",
+            price: "22",
+            product_id: "19",
+            seller_id: "21",
+            tags: ["camping", "shelter", "outdoor"]
+          },
+          {
+            buyer_id: "20",
+            category: "outdoor",
+            image: "https://storage.cloud.google.com/quickrent_item_images/tent.png",
+            location: "80830",
+            name: "Tent 64",
+            price: "22",
+            product_id: "19",
+            seller_id: "21",
+            tags: ["camping", "shelter", "outdoor"]
+          },
+          {
+            buyer_id: "20",
+            category: "outdoor",
+            image: "https://storage.cloud.google.com/quickrent_item_images/tent.png",
+            location: "80830",
+            name: "Tent 64",
+            price: "22",
+            product_id: "19",
+            seller_id: "21",
+            tags: ["camping", "shelter", "outdoor"]
+          },
+          {
+            buyer_id: "20",
+            category: "outdoor",
+            image: "https://storage.cloud.google.com/quickrent_item_images/tent.png",
+            location: "80830",
+            name: "Tent 64",
+            price: "22",
+            product_id: "19",
+            seller_id: "21",
+            tags: ["camping", "shelter", "outdoor"]
+          },
+          {
+            buyer_id: "20",
+            category: "outdoor",
+            image: "https://storage.cloud.google.com/quickrent_item_images/tent.png",
+            location: "80830",
+            name: "Tent 64",
+            price: "22",
+            product_id: "19",
+            seller_id: "21",
+            tags: ["camping", "shelter", "outdoor"]
+          },
+          {
+            buyer_id: "20",
+            category: "outdoor",
+            image: "https://storage.cloud.google.com/quickrent_item_images/tent.png",
+            location: "80830",
+            name: "Tent 64",
+            price: "22",
+            product_id: "19",
+            seller_id: "21",
+            tags: ["camping", "shelter", "outdoor"]
+          },
+          {
+            buyer_id: "20",
+            category: "outdoor",
+            image: "https://storage.cloud.google.com/quickrent_item_images/tent.png",
+            location: "80830",
+            name: "Tent 64",
+            price: "22",
+            product_id: "19",
+            seller_id: "21",
+            tags: ["camping", "shelter", "outdoor"]
+          },
+        ]
+        setPopularProducts(sampleProduct);
         const response = await axios.get('http://localhost:5000/popular-products');
-        console.log("Popular products response:", response.data); // Log the response from the server
-        setPopularProducts(response.data.products);
+        console.log("Popular products response:", response.data); // Log the response from the server                        
+        // setPopularProducts(response.data.products);
       } catch (error) {
         console.error("Fetching popular products failed:", error);
       }
@@ -112,26 +228,25 @@ function App() {
 
   return (
     <div>
-      <Navbar handleSearch={handleSearch} />
-      <header className="App-header">
-        <h1>Search For Rentals!</h1>
-        {/* <SearchComponent onSearch={handleSearch} /> */}
-      </header>
+      <Navbar searchFunc={handleSearch} />
+      <Carousel />
+
       <section className="popular-products">
-        <h2>Popular Rented Products</h2>
-        <div className="product-list">
-          {popularProducts.map(product => (
+        <h2 className='display-3 mt-5 mb-3' style={{ fontWeight: " 700 " }}>Popular Rentals</h2>
+        <div className="product-list card-group">
+          {/* {popularProducts.map(product => (
             <ProductCard product={product} key={product.id} />
-          ))}
+          ))} */}
+          <PopularProducts popularProducts={popularProducts} />
         </div>
       </section>
       <section className="search-results">
         <h2>Search Results</h2>
-        <div className="product-list">
+        <Row xs={1} md={2}>
           {results.map(product => (
             <ProductCard product={product} key={product.id} />
           ))}
-        </div>
+        </Row>
       </section>
       <Modal show={isModalOpen} onClose={handleCloseModal}>
         {selectedProduct && (
