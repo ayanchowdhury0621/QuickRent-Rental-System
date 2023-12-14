@@ -83,10 +83,11 @@ from google.cloud import bigquery
 
 
 def fetch_transaction_history(limit=10):
-    client = bigquery.Client()
+    project_id = "quickrent-rental-system-407522"
+    client = bigquery.Client(project=project_id)
 
     query = """
-    SELECT * FROM sold_products_warehouse.sold_products
+    SELECT * FROM quickrent-rental-system-407522.sold_products_warehouse.sold_products
     LIMIT 5
     """
     job_config = bigquery.QueryJobConfig(

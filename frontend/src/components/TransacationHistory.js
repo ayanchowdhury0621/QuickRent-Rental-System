@@ -14,17 +14,29 @@ const TransactionHistory = () => {
     fetchAndSetHistory();
   }, []);
 
+  // A function to safely handle the tags
+  const formatTags = (tags) => {
+    if (Array.isArray(tags)) {
+      return tags.join(', ');
+    } else if (tags) { // assuming it's a string or has a toString method
+      return tags.toString();
+    }
+    return '';
+  };
+
   return (
     <div>
       <h2>Transaction History</h2>
       <div className="transaction-list">
         {history.map((transaction, index) => (
-          <div key={index}>
-            {/* Display transaction details here */}
-            <p>{transaction.name}</p>
-            <p>{transaction.tags}</p>
-            <p>{transaction.price}</p>
-            <p>{transaction.location}</p> 
+          <div key={index} className="product">
+            <img src={transaction.image} alt={transaction.name} />
+            <div className="product-info">
+              <h3>{transaction.name}</h3>
+              <p>Tags: {formatTags(transaction.tags)}</p>
+              <p className="price-tag">Price: ${transaction.price}</p>
+              <p>Location Zip: {transaction.location}</p> 
+            </div>
           </div>
         ))}
       </div>
