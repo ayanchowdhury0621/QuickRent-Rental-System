@@ -7,6 +7,17 @@
     --button-bg-color: #0056b3; /* Darker blue for buttons */
     --button-text-color: #ffffff; /* White text on buttons */
   }
+
+  /* Box styling for the form */
+.addRental {
+  background-color: #fff; /* White background */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px; /* Set a max-width for the form */
+  margin: 20px auto; /* Center the form in the middle of the page */
+}
+
   
   body {
     background-color: var(--main-bg-color);
@@ -45,7 +56,30 @@
     margin-bottom: 10px; /* Space below the image */
   }
   
-  /* ... (other styles) ... */
+  /* Larger titles */
+h1 {
+  font-size: 3em; /* Adjust size as needed */
+  text-align: center;
+  margin-top: 30px; /* Space at the top */
+}
+
+/* Style form inputs and labels */
+.addRental input,
+.addRental select {
+  width: 100%; /* Make inputs and selects take up the full container width */
+  padding: 10px;
+  margin: 5px 0 15px 0; /* Add space around inputs */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.addRental label {
+  display: block; /* Make labels take up their own line */
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+
   
   /* Larger, centered title */
   h2 {
@@ -76,6 +110,12 @@
   .product-info button:hover {
     background-color: darken(var(--button-bg-color), 10%);
   }
+
+  /* Add spacing around buttons */
+button {
+  margin: 10px;
+}
+
   
   /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {

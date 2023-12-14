@@ -1,13 +1,20 @@
 import React from 'react';
-import TransactionHistory from './components/TransacationHistory.js'; // Ensure this import path is correct
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AddRentals from './components/AddRentals';  // Adjust the import path as needed
+import TransactionHistory from './components/TransactionHistory';  // Adjust the import path as needed
+import { Navigate } from 'react-router-dom';
 import './App.css';
 
 const App = () => {
   return (
-    <div>
-      {/* Directly render the TransactionHistory component */}
-      <TransactionHistory />
-    </div>
+    <Router>
+      <Routes>
+      <Route path="/" element={<Navigate replace to="/add-rentals" />} />
+        <Route path="/add-rentals" element={<AddRentals />} />
+        <Route path="/transaction-history" element={<TransactionHistory />} />
+        {/* Other routes can be added here */}
+      </Routes>
+    </Router>
   );
 };
 

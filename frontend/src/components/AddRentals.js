@@ -12,7 +12,7 @@ function AddRentals() {
   const [rentalCategory, setRentalCategory] = useState("");
   const [rentalZip, setRentalZip] = useState(0);
   const [rentalPrice, setRentalPrice] = useState(0);
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const [imgUpload, setImgUpload] = useState(null);
   const [imgUrl, setImgUrl] = useState("");
@@ -64,7 +64,7 @@ function AddRentals() {
   }
 
   const goToTransactionHistory = () => {
-    history.push('/transaction-history');
+    navigate('/transaction-history');
   };
 
 
