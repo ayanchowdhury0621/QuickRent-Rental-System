@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import useAuthenticator from './Middleware/useAuthenticator';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import useAuthenticator from "./Middleware/useAuthenticator";
 
 const Cart = () => {
   // See if the user is signed in (Get uid)
@@ -10,11 +10,11 @@ const Cart = () => {
   const { user } = useAuthenticator();
   const [cartItems, setCartItems] = useState([]);
   const [myCart, setMyCart] = useState({});
-  const [userId, setUserId] = useState(user || '');
+  const [userId, setUserId] = useState(user || "");
   const [actCart, setActCart] = useState();
 
   const fetchCartItems = async () => {
-    if (userId !== null && userId !== undefined && userId !== '') {
+    if (userId !== null && userId !== undefined && userId !== "") {
       // try {
       //   const response = await axios.get(`http://localhost:5001/api/tempCart/${userId}`);
       //   setCartItems(response.data);
@@ -23,18 +23,21 @@ const Cart = () => {
       // }
 
       try {
-        const response_cart = await axios.get(`http://localhost:5001/api/getCart/${userId}`);
+        const response_cart = await axios.get(
+          `http://localhost:5001/api/getCart/${userId}`
+        );
         setActCart(response_cart.data);
-
       } catch (error) {
-        console.error('Error fetching cart items:', error);
+        console.error("Error fetching cart items:", error);
       }
     }
   };
 
   const addToCart = async (prodID, quantity) => {
-
     // check if cart is empty
+    if (prodID === -1) {
+      const res = await axios.post(`http://localhost:5001/api/emptyCart`);
+    }
     const currentCart = { ...myCart };
     if (currentCart.length === 0 || currentCart[prodID] === undefined) {
       // If the cart is empty or the product is not present, add the product
@@ -47,20 +50,21 @@ const Cart = () => {
     setMyCart({ ...currentCart });
     console.log(myCart);
 
-    // Push to server 
+    // Push to server
     try {
-      const res = await axios.post(`http://localhost:5001/api/updateCart/${userId}`, currentCart);
+      const res = await axios.post(
+        `http://localhost:5001/api/updateCart/${userId}`,
+        currentCart
+      );
       console.log(res.data);
+    } catch (error) {
+      console.log("Front-internal", error);
     }
-    catch (error) {
-      console.log("Front-internal", error)
-    }
-  }
-
+  };
 
   useEffect(() => {
-    console.log(sessionStorage.getItem('uid') || user?.uid);
-    const uid = sessionStorage.getItem('uid');
+    console.log(sessionStorage.getItem("uid") || user?.uid);
+    const uid = sessionStorage.getItem("uid");
     uid && setUserId(uid);
     fetchCartItems();
   }, [user, myCart]);
@@ -86,7 +90,7 @@ const Cart = () => {
   //     </h3> */}
   //   </div>
   // );
-  return [actCart, addToCart] ;
+  return [actCart, addToCart];
 };
 
 export default Cart;
