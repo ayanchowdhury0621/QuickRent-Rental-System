@@ -22,125 +22,14 @@ function App() {
     // Fetch popular rented products here and set them in the state
     const fetchPopularProducts = async () => {
       try {
-        // const sampleProduct = [
-        //   {
-        //     buyer_id: "20",
-        //     category: "outdoor",
-        //     image: "https://storage.cloud.google.com/quickrent_item_images/tent.png",
-        //     location: "80830",
-        //     name: "Tent 64",
-        //     price: "22",
-        //     product_id: "19",
-        //     seller_id: "21",
-        //     tags: ["camping", "shelter", "outdoor"]
-        //   },
-        //   {
-        //     buyer_id: "20",
-        //     category: "outdoor",
-        //     image: "https://storage.cloud.google.com/quickrent_item_images/tent.png",
-        //     location: "80830",
-        //     name: "Tent 64",
-        //     price: "22",
-        //     product_id: "19",
-        //     seller_id: "21",
-        //     tags: ["camping", "shelter", "outdoor"]
-        //   },
-        //   {
-        //     buyer_id: "20",
-        //     category: "outdoor",
-        //     image: "https://storage.cloud.google.com/quickrent_item_images/tent.png",
-        //     location: "80830",
-        //     name: "Tent 64",
-        //     price: "22",
-        //     product_id: "19",
-        //     seller_id: "21",
-        //     tags: ["camping", "shelter", "outdoor"]
-        //   },
-        //   {
-        //     buyer_id: "20",
-        //     category: "outdoor",
-        //     image: "https://storage.cloud.google.com/quickrent_item_images/tent.png",
-        //     location: "80830",
-        //     name: "Tent 64",
-        //     price: "22",
-        //     product_id: "19",
-        //     seller_id: "21",
-        //     tags: ["camping", "shelter", "outdoor"]
-        //   },
-        //   {
-        //     buyer_id: "20",
-        //     category: "outdoor",
-        //     image: "https://storage.cloud.google.com/quickrent_item_images/tent.png",
-        //     location: "80830",
-        //     name: "Tent 64",
-        //     price: "22",
-        //     product_id: "19",
-        //     seller_id: "21",
-        //     tags: ["camping", "shelter", "outdoor"]
-        //   },
-        //   {
-        //     buyer_id: "20",
-        //     category: "outdoor",
-        //     image: "https://storage.cloud.google.com/quickrent_item_images/tent.png",
-        //     location: "80830",
-        //     name: "Tent 64",
-        //     price: "22",
-        //     product_id: "19",
-        //     seller_id: "21",
-        //     tags: ["camping", "shelter", "outdoor"]
-        //   },
-        //   {
-        //     buyer_id: "20",
-        //     category: "outdoor",
-        //     image: "https://storage.cloud.google.com/quickrent_item_images/tent.png",
-        //     location: "80830",
-        //     name: "Tent 64",
-        //     price: "22",
-        //     product_id: "19",
-        //     seller_id: "21",
-        //     tags: ["camping", "shelter", "outdoor"]
-        //   },
-        //   {
-        //     buyer_id: "20",
-        //     category: "outdoor",
-        //     image: "https://storage.cloud.google.com/quickrent_item_images/tent.png",
-        //     location: "80830",
-        //     name: "Tent 64",
-        //     price: "22",
-        //     product_id: "19",
-        //     seller_id: "21",
-        //     tags: ["camping", "shelter", "outdoor"]
-        //   },
-        //   {
-        //     buyer_id: "20",
-        //     category: "outdoor",
-        //     image: "https://storage.cloud.google.com/quickrent_item_images/tent.png",
-        //     location: "80830",
-        //     name: "Tent 64",
-        //     price: "22",
-        //     product_id: "19",
-        //     seller_id: "21",
-        //     tags: ["camping", "shelter", "outdoor"]
-        //   },
-        //   {
-        //     buyer_id: "20",
-        //     category: "outdoor",
-        //     image: "https://storage.cloud.google.com/quickrent_item_images/tent.png",
-        //     location: "80830",
-        //     name: "Tent 64",
-        //     price: "22",
-        //     product_id: "19",
-        //     seller_id: "21",
-        //     tags: ["camping", "shelter", "outdoor"]
-        //   },
-        // ]
-        // setPopularProducts(sampleProduct);
         const response = await axios.get('http://localhost:5000/popular-products');
         console.log("Popular products response:", response.data); // Log the response from the server                        
         setPopularProducts(response.data.products);
       } catch (error) {
         console.error("Fetching popular products failed:", error);
       }
+
+
     };
 
     fetchPopularProducts();
@@ -148,7 +37,7 @@ function App() {
 
   return (
     <div>
-      <Navbar/>
+      <Navbar productsData={popularProducts}/>
       <Router>
       <Routes>
         <Route path="/" element={<Authenticate />} />

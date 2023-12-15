@@ -43,7 +43,7 @@ def query_products(search_criteria, user_zipcode):
     return results
 
 
-def fetch_popular_products(limit=10):
+def fetch_popular_products(limit=100):
     """
     Fetch popular products from the Firestore database.
     Returns a limited number of products.
