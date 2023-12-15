@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from backend.storage.index import query_products, fetch_transaction_history
-from flask_cors import CORS  # Import CORS
+from flask_cors import CORS
 from backend.Search import analyze_text
 from google.cloud import bigquery
 
@@ -33,4 +33,4 @@ def transaction_history():
 # More API endpoints...
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5008)
