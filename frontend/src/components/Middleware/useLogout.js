@@ -5,6 +5,7 @@ const useLogout = () => {
   const logOut = () => {
     signOut(auth);
     sessionStorage.clear();
+    window.location.href = "/";
   }
 
   return logOut;

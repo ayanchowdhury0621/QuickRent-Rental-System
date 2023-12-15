@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import './SearchComponent.css'; // Corrected import statement
+import styles from './SearchComponent.scss'; // Corrected import statement
 
 function SearchComponent({ onSearch }) {
   const [query, setQuery] = useState('');
-
   const handleSearch = () => {
     if (query) {
       onSearch(query);
@@ -24,9 +23,10 @@ function SearchComponent({ onSearch }) {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onKeyPress={handleKeyPress} // Add this line
-        className="search-bar"
-        placeholder="Search for items..."
+        className="search-bar form-label mt-2 rounded-5 p-1 ps-2"
+        placeholder="Search"
       />
+      {/* <i class="fas fa-search"></i> */}
       <button onClick={handleSearch}>Search</button>
     </div>
   );
