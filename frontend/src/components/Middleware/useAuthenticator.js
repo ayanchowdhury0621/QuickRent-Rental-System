@@ -24,6 +24,7 @@ const useAuthenticator = () => {
           }
           else {
             logOut();
+            window.location.href = "/";
           }
         })
       }

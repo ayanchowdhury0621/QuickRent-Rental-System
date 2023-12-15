@@ -5,8 +5,21 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import { ListGroup } from "react-bootstrap";
+import Cart from './Cart';
 
 const PopularProducts = ({ popularProducts }) => {
+
+  // actCart = actual User cart
+  // addToCart = post cart (product, quantity);
+  const [actCart, addToCart] = Cart();
+
+  // Function to handle adding product to cart
+  const handleAddToCart = async (product) => {
+    // Placeholder for add to cart logic
+    // console.log('Add to cart:', product);
+    await addToCart(product, 1);
+  };
+
   return (
     <Container>
       {popularProducts && <Row xs={1} md={3} lg={4} className="g-4">
@@ -30,7 +43,9 @@ const PopularProducts = ({ popularProducts }) => {
                       })}
                     </ListGroup.Item>
                   </ListGroup>
-                  <Button variant="primary btn-sm">Add to Cart</Button>
+                  <Button variant="primary btn-sm" onClick={()=>{
+                    handleAddToCart(product.product_id);
+                  }}>Add to Cart</Button>
                 </Card.Body>
               </Card>
 

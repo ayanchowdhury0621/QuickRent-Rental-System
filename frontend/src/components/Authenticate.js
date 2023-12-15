@@ -5,7 +5,6 @@ import useAuthenticator from './Middleware/useAuthenticator';
 import useVerifyer from './Middleware/useVerifyer';
 import useLogout from './Middleware/useLogout';
 import { Container, Row, Col } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
 
 const Authenticate = () => {
   const [email, setEmail] = useState('');
@@ -43,7 +42,15 @@ const Authenticate = () => {
       .then(async (user) => {
         try {
           const checkToken = await verifyFunc();
-          if (checkToken.data.message === "success") { }
+          if (checkToken.data.message === "success") { 
+            alert("Login Successful");
+            if (userType === 'buyer') {
+              window.location.href = "/buyer-dashboard";
+            }
+            else {
+              window.location.href = "/seller-dashboard";
+            }
+          }
           else alert(checkToken.response.data.message);
         }
         catch (error) {
